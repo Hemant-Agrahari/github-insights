@@ -66,7 +66,7 @@ export default async function RepoPage({ params }: RepoPageProps) {
                             <RepoActionCenter owner={owner} name={name} />
                             <RepoStatsCard
                                 language={repo.language}
-                                license={repo.license?.name}
+                                license={repo.license?.name ?? null}
                                 updatedAt={repo.updated_at}
                             />
                         </div>
