@@ -15,7 +15,7 @@ const Home = () => {
             Open Source Tool
           </div>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
-            GitHub <span className="text-blue-600">Insights</span>
+            GitHub <span className="text-blue-600"> Repository Insights</span>
           </h1>
           <p className="text-sm md:text-base text-slate-500 max-w-lg mx-auto leading-relaxed">
             A premium interface to explore repository metadata, analyze contributors, and track issues with real-time feedback.
