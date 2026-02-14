@@ -20,6 +20,6 @@
 ## Improvements with More Time
 
 - **Theme Toggle**: Adding a dark/light mode switcher.
-- **Interactive Graphs**: Visualizing issue velocity or contributor activity.
-- **Search Integration**: Implementing a search bar for issues.
-- **Full Comment Threads**: Implementing the ability to read and post comments.
+- **Interactive Data Viz**: Visualizing issue patterns (e.g., open vs. closed over time).
+- **Global Issue Search**: A top-level search bar for finding issues across all indexed repositories.
+- **Enhanced Error Logging**: Integrating with a service like Sentry to track production API failures and rate limit collisions.

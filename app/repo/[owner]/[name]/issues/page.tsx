@@ -7,9 +7,6 @@ import IssuesFilters from "@/components/issues/IssuesFilters";
 import IssuesTable from "@/components/issues/IssuesTable";
 import IssuesPagination from "@/components/issues/IssuesPagination";
 import useDebounce from "@/hooks/useDebounce";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
 import { BackButton } from "@/components/ui/back-button";
 
 const IssuesPage = () => {

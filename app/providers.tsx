@@ -8,11 +8,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         new QueryClient({
             defaultOptions: {
                 queries: {
-                    // Cache data for 5 minutes (gcTime)
-                    // Keep data fresh for 1 minute (staleTime) to minimize API calls while ensuring up-to-date info
                     staleTime: 60 * 1000,
                     gcTime: 5 * 60 * 1000,
-                    refetchOnWindowFocus: false, // Prevent unnecessary background calls
+                    refetchOnWindowFocus: false,
                 },
             },
         })

@@ -11,17 +11,7 @@ import { IssuesTableSkeleton } from "@/components/skeletons/IssuesTableSkeleton"
 import { MessageSquare, Hash } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-type Issue = {
-    id: number;
-    number: number;
-    title: string;
-    comments: number;
-    user: {
-        login: string;
-        avatar_url?: string;
-    };
-    state: string;
-};
+import { Issue } from "@/types/github";
 
 type Props = {
     issues?: Issue[];

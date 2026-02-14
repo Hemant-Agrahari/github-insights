@@ -1,21 +1,7 @@
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-type Label = {
-    id: number;
-    name: string;
-    color: string;
-};
-
-interface Issue {
-    title: string;
-    state: string;
-    number: number;
-    user: {
-        login: string;
-    };
-    labels: Label[];
-}
+import { Issue, Label } from "@/types/github";
 
 interface IssueHeaderProps {
     issue: Issue;

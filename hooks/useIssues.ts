@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Issue } from "@/types/github";
 
 /**
  * Fetch GitHub repository issues.
@@ -16,9 +17,9 @@ export const useIssues = (
   page: number,
   state: string,
   sort: string = "created",
-  assignee: string = ""
+  assignee: string = "",
 ) => {
-  return useQuery<any[]>({
+  return useQuery<Issue[]>({
     queryKey: ["issues", owner, repo, page, state, sort, assignee],
     queryFn: async () => {
       const res = await axios.get(
@@ -34,7 +35,7 @@ export const useIssues = (
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
           },
-        }
+        },
       );
       return res.data;
     },

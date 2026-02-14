@@ -23,12 +23,16 @@
 - **gcTime (5 minutes)**: Keeps data in memory for long enough to allow quick back-and-forth navigation without fetching, but eventually clears it to prevent memory bloat.
 - **placeholderData**: Used in the issues list to preserve the UI during pagination, preventing flicker and maintaining a smooth scrolling experience.
 
+## Modular Architecture Refactor
+
+- **Separation of Concerns**: Both the Repository Overview and Issue Detail pages were refactored from monolithic components into small, specialized modules (e.g., `RepoHeader`, `IssueContent`). This significantly improves maintainability and makes it easier to update specific UI sections without touching core state logic.
+- **Prop Orchestration**: State management (mutations, params) is kept in the main page components, while data is passed down to modular sub-components via props, ensuring a clear data flow.
+
+## Dynamic Navigation Utilities
+
+- **Context-Aware BackButton**: Instead of a generic "Back" link, I implemented a reusable `BackButton` that dynamically displays labels like "Back to Search" or "Back to github-insights" based on navigation context, enhancing usability.
+- **Global Scroll UI**: Added a `BackToTop` utility in the Root Layout to handle smooth scrolling for content-heavy pages, utilizing glassmorphism effects to maintain a premium feel.
+
 ## Tradeoffs Made
 
-- **Client-Side Filtering/Sorting**: while some filtering is done via API, the complexity of a full-blown filter bar was slightly reduced to focus on core stability.
-- **UI Simplicity**: Prioritized clean typography and layout using shadcn/ui over complex custom animations to ensure code maintainability.
-
-## Intentional Exclusions
-
-- **User Authentication**: The project uses a single PAT for simplification, but in production, OAuth would be necessary to allow users to act on their own behalf.
-- **Comment Creation**: Focused on the "Close Issue" mutation flow as per requirements.
+- **Client-Side vs. Server-Side Props**: While modular components are now widely used, I've kept data fetching centralized in the parent components to minimize prop discovery overhead and keep the hierarchy simple.

@@ -1,11 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users } from "lucide-react";
 
-interface Contributor {
-    id: number;
-    login: string;
-    avatar_url: string;
-}
+import { Contributor } from "@/types/github";
 
 interface RepoContributorsProps {
     contributors: Contributor[];

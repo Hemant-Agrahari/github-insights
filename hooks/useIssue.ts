@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Issue } from "@/types/github";
 
 /**
  * Fetch a single GitHub issue.
@@ -14,7 +15,7 @@ import axios from "axios";
  * - refetchOnWindowFocus: false (avoids unnecessary API calls)
  */
 const useIssue = (owner: string, repo: string, number: string) => {
-  return useQuery({
+  return useQuery<Issue>({
     queryKey: ["issue", owner, repo, number],
     queryFn: async () => {
       const res = await axios.get(
