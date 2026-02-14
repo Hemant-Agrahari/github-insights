@@ -22,11 +22,7 @@ type Issue = {
  * - Cancels ongoing queries to prevent race conditions
  * - Refetches issue after mutation to ensure data consistency
  */
-export const useCloseIssue = (
-  owner: string,
-  repo: string,
-  number: string
-) => {
+const useCloseIssue = (owner: string, repo: string, number: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -38,7 +34,7 @@ export const useCloseIssue = (
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
           },
-        }
+        },
       );
       return res.data;
     },
@@ -56,13 +52,10 @@ export const useCloseIssue = (
         number,
       ]);
 
-      queryClient.setQueryData<Issue>(
-        ["issue", owner, repo, number],
-        (old) => {
-          if (!old) return old;
-          return { ...old, state: "closed" };
-        }
-      );
+      queryClient.setQueryData<Issue>(["issue", owner, repo, number], (old) => {
+        if (!old) return old;
+        return { ...old, state: "closed" };
+      });
 
       return { previous };
     },
@@ -72,7 +65,7 @@ export const useCloseIssue = (
       if (context?.previous) {
         queryClient.setQueryData(
           ["issue", owner, repo, number],
-          context.previous
+          context.previous,
         );
       }
     },
@@ -83,3 +76,5 @@ export const useCloseIssue = (
     },
   });
 };
+
+export default useCloseIssue;

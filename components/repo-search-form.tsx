@@ -17,9 +17,8 @@ const validationSchema = Yup.object({
         .min(1, "Repository cannot be empty"),
 });
 
-export function RepoSearchForm() {
+const RepoSearchForm = () => {
     const router = useRouter();
-
     const formik = useFormik({
         initialValues: {
             owner: "",
@@ -32,20 +31,20 @@ export function RepoSearchForm() {
     });
 
     return (
-        <Card className="w-full max-w-md border-none shadow-xl bg-white overflow-hidden">
-            <CardHeader className="bg-slate-900 text-white pb-8">
-                <div className="flex items-center gap-3 mb-2 opacity-80">
-                    <Search className="w-5 h-5 text-blue-400" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-slate-300">Repository Insights</span>
+        <Card className="w-full max-w-md border-none shadow-xl bg-white overflow-hidden mx-auto">
+            <CardHeader className="bg-slate-900 text-white p-4 pb-2 md:p-5 md:pb-3">
+                <div className="flex items-center gap-3 mb-1 opacity-80">
+                    <Search className="w-3.5 h-3.5 text-blue-400" />
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-300">Repository Insights</span>
                 </div>
-                <CardTitle className="text-2xl font-bold text-left">Explore GitHub</CardTitle>
+                <CardTitle className="text-xl font-bold text-left">Explore GitHub</CardTitle>
             </CardHeader>
-            <CardContent className="p-8 -mt-4 bg-white rounded-t-3xl relative">
-                <form onSubmit={formik.handleSubmit} className="space-y-6">
+            <CardContent className="p-4 md:p-5 -mt-3 bg-white rounded-t-3xl relative">
+                <form onSubmit={formik.handleSubmit} className="space-y-2">
                     <div className="space-y-2 text-left">
                         <label
                             htmlFor="owner"
-                            className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors ${formik.touched.owner && formik.errors.owner ? "text-red-500" : "text-slate-500"
+                            className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors ${formik.touched.owner && formik.errors.owner ? "text-red-500" : "text-slate-500"
                                 }`}
                         >
                             <User className="w-3.5 h-3.5" />
@@ -59,7 +58,7 @@ export function RepoSearchForm() {
                                 value={formik.values.owner}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                className={`pl-4 h-12 bg-slate-50 transition-all rounded-xl font-medium ${formik.touched.owner && formik.errors.owner
+                                className={`pl-4 h-10 bg-slate-50 transition-all rounded-xl font-medium ${formik.touched.owner && formik.errors.owner
                                     ? "border-red-300 focus:ring-red-100 bg-red-50/30"
                                     : "border-slate-200 focus:bg-white"
                                     }`}
@@ -76,7 +75,7 @@ export function RepoSearchForm() {
                     <div className="space-y-2 text-left">
                         <label
                             htmlFor="repo"
-                            className={`text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-colors ${formik.touched.repo && formik.errors.repo ? "text-red-500" : "text-slate-500"
+                            className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors ${formik.touched.repo && formik.errors.repo ? "text-red-500" : "text-slate-500"
                                 }`}
                         >
                             <Book className="w-3.5 h-3.5" />
@@ -90,7 +89,7 @@ export function RepoSearchForm() {
                                 value={formik.values.repo}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                className={`pl-4 h-12 bg-slate-50 transition-all rounded-xl font-medium ${formik.touched.repo && formik.errors.repo
+                                className={`pl-4 h-10 bg-slate-50 transition-all rounded-xl font-medium ${formik.touched.repo && formik.errors.repo
                                     ? "border-red-300 focus:ring-red-100 bg-red-50/30"
                                     : "border-slate-200 focus:bg-white"
                                     }`}
@@ -107,7 +106,7 @@ export function RepoSearchForm() {
                     <Button
                         type="submit"
                         disabled={!formik.isValid || formik.isSubmitting}
-                        className="w-full h-12 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-slate-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full h-10 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-slate-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         View Insights
                         <Github className="w-4 h-4" />
@@ -117,3 +116,5 @@ export function RepoSearchForm() {
         </Card>
     );
 }
+
+export default RepoSearchForm

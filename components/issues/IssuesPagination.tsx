@@ -8,12 +8,12 @@ type Props = {
     hasNext: boolean;
 };
 
-export default function IssuesPagination({
+const IssuesPagination = ({
     page,
     setPage,
     isFetching,
     hasNext,
-}: Props) {
+}: Props) => {
     return (
         <div className="flex items-center justify-center gap-6 mt-8 py-4 border-t border-slate-100">
             <div className="flex items-center gap-4">
@@ -56,3 +56,5 @@ export default function IssuesPagination({
         </div>
     );
 }
+
+export default IssuesPagination

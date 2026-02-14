@@ -13,11 +13,7 @@ import axios from "axios";
  * - gcTime: 5 minutes (keeps data in cache for quick navigation)
  * - refetchOnWindowFocus: false (avoids unnecessary API calls)
  */
-export const useIssue = (
-  owner: string,
-  repo: string,
-  number: string
-) => {
+const useIssue = (owner: string, repo: string, number: string) => {
   return useQuery({
     queryKey: ["issue", owner, repo, number],
     queryFn: async () => {
@@ -27,7 +23,7 @@ export const useIssue = (
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
           },
-        }
+        },
       );
       return res.data;
     },
@@ -36,3 +32,5 @@ export const useIssue = (
     refetchOnWindowFocus: false,
   });
 };
+
+export default useIssue;

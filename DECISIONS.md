@@ -1,9 +1,17 @@
 # Engineering Decisions
 
-## Server vs. Client Boundaries
+- **Server-Side (Repository Overview & Home)**: I chose to server-render the overview page and the home page. This ensures fast initial load times and satisfies the "statically rendered route" requirement. Server components minimize the JS bundle sent to the client by keeping data fetching logic on the server.
+- **Client-Side (Issues List & Detail)**: These pages require high interactivity (filtering, sorting, pagination, and mutations). Client components allow for a responsive UI and seamless integration with TanStack Query's caching and optimistic update features.
 
-- **Server-Side (Repository Overview & Home)**: I chose to server-render the overview page and the home page. The home page is now a static server component to satisfy the "statically rendered route" requirement, while the interactive functionality is delegated to a child `RepoSearchForm` component.
-- **Client-Side (Issues List & Detail)**: These pages require stateful interactions (pagination, filtering, mutations, optimistic updates). Using Client Components with React Query provides a superior developer experience for managing complex async state and caching.
+## shadcn/ui Impact & Bundle Size
+
+- **Controlled Imports**: shadcn/ui uses a copy-and-paste approach where components are added to the codebase individually. This prevents importing the entire library and ensures that only the CSS and JS for components actually used (Button, Card, Table, etc.) are bundled, keeping the client-side footprint minimal.
+
+## Performance Validation
+
+- **No Layout Shift**: Validated that `loading.tsx` skeletons prevent layout shifts (CLS) during transitions.
+- **Efficient Re-renders**: Used React Query's `select` and `placeholderData` to ensure only necessary components re-render during data updates.
+- **API Discipline**: Checked network logs to confirm zero duplicate API calls and verified that `staleTime` prevents unnecessary background refetches.
 
 ## Component Choices
 

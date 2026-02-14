@@ -3,12 +3,15 @@
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { useIssues } from "@/hooks/useIssues";
-import { useDebounce } from "@/hooks/useDebounce";
 import IssuesFilters from "@/components/issues/IssuesFilters";
 import IssuesTable from "@/components/issues/IssuesTable";
 import IssuesPagination from "@/components/issues/IssuesPagination";
+import useDebounce from "@/hooks/useDebounce";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
-export default function IssuesPage() {
+const IssuesPage = () => {
     const params = useParams();
     const owner = params.owner as string;
     const name = params.name as string;
@@ -33,13 +36,22 @@ export default function IssuesPage() {
     }
 
     return (
-        <div className="h-screen bg-slate-50/50 flex flex-col overflow-hidden">
-            <div className="flex-1 flex flex-col max-w-7xl w-full mx-auto p-6 min-h-0">
+        <div className="min-h-screen md:h-screen bg-slate-50/50 flex flex-col overflow-auto md:overflow-hidden">
+            <div className="flex-1 flex flex-col max-w-7xl w-full mx-auto p-4 md:p-6 min-h-0">
                 <div className="flex-none mb-6">
-                    <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-                        Issues
-                    </h1>
-                    <p className="text-slate-500 mt-1">
+                    <div className="flex items-center gap-4 mb-2">
+                        <Link href={`/repo/${owner}/${name}`}>
+                            <Button variant="ghost" size="sm" className="gap-2 text-slate-500 hover:text-slate-900 transition-colors -ml-2">
+                                <ArrowLeft className="w-4 h-4" />
+                                Back
+                            </Button>
+                        </Link>
+                        <div className="h-4 w-px bg-slate-200" />
+                        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+                            Issues
+                        </h1>
+                    </div>
+                    <p className="text-slate-500">
                         Manage and track issues for {owner}/{name}
                     </p>
                 </div>
@@ -56,8 +68,8 @@ export default function IssuesPage() {
                     />
                 </div>
 
-                <div className="flex-1 min-h-0 relative">
-                    <div className="absolute inset-0 overflow-auto border border-slate-200 rounded-xl bg-white shadow-sm">
+                <div className="flex-1 min-h-[400px] md:min-h-0 relative">
+                    <div className="md:absolute md:inset-0 overflow-auto border border-slate-200 rounded-xl bg-white shadow-sm">
                         <IssuesTable
                             issues={data}
                             loading={isLoading}
@@ -79,3 +91,4 @@ export default function IssuesPage() {
         </div>
     );
 }
+export default IssuesPage;

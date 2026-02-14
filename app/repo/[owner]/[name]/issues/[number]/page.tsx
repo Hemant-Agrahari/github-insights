@@ -1,9 +1,8 @@
 "use client";
-
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import { useIssue } from "@/hooks/useIssue";
-import { useCloseIssue } from "@/hooks/useCloseIssue";
+import useIssue from "@/hooks/useIssue";
+import useCloseIssue from "@/hooks/useCloseIssue";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +27,7 @@ type Label = {
     color: string;
 };
 
-export default function IssueDetailPage() {
+const IssueDetailPage = () => {
     const params = useParams();
     const owner = params.owner as string;
     const name = params.name as string;
@@ -75,7 +74,7 @@ export default function IssueDetailPage() {
     };
 
     return (
-        <div className="p-6 space-y-6 max-w-4xl mx-auto">
+        <div className="p-4 md:p-6 space-y-6 max-w-4xl mx-auto">
             {/* Mutation Error */}
             {mutationError && (
                 <Card className="border-destructive bg-destructive/10">
@@ -96,7 +95,7 @@ export default function IssueDetailPage() {
             )}
 
             {/* Header Actions */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <Link
                     href={`/repo/${owner}/${name}/issues`}
                     className="text-blue-600 hover:underline flex items-center gap-1"
@@ -189,3 +188,5 @@ export default function IssueDetailPage() {
         </div>
     );
 }
+
+export default IssueDetailPage;

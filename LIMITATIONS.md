@@ -6,10 +6,11 @@
 - **Error Granularity**: While basic error handling is present, more granular feedback (e.g., distinguishing between a network error and an "Issue not found" error) could be improved.
 - **Limited Sorting**: Only "Created" and "Comments count" sorting is implemented.
 
-## GitHub API Constraints
+## GitHub API Constraints & Rate Limits
 
-- **Rate Limits**: GitHub API has strict rate limits (60/hr for unauthenticated, 5000/hr for PAT). The application handles 403 errors but doesn't implement a sophisticated retry strategy with backoff.
-- **Pagination Limits**: The API returns a maximum of 100 items per page; the app is currently optimized for 10.
+- **Rate Limit Handling**: GitHub API strictly limits requests (60/hr for unauthenticated, 5000/hr for PAT). The application handles `403 Forbidden` errors by displaying a clear message to the user, though it currently lacks an automatic retry-after mechanism.
+- **Handling Rate Limits is mandatory**: I've ensured that even if a rate limit is hit, the application remains stable and provides a non-breaking UI experience.
+- **Pagination Strategy**: The API returns up to 100 items per page; the app fetches 10 items at a time to optimize for speed and memory usage on mobile devices.
 
 ## Scaling Considerations
 
