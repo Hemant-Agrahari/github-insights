@@ -10,6 +10,7 @@ import useDebounce from "@/hooks/useDebounce";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { BackButton } from "@/components/ui/back-button";
 
 const IssuesPage = () => {
     const params = useParams();
@@ -40,12 +41,7 @@ const IssuesPage = () => {
             <div className="flex-1 flex flex-col max-w-7xl w-full mx-auto p-4 md:p-6 min-h-0">
                 <div className="flex-none mb-6">
                     <div className="flex items-center gap-4 mb-2">
-                        <Link href={`/repo/${owner}/${name}`}>
-                            <Button variant="ghost" size="sm" className="gap-2 text-slate-500 hover:text-slate-900 transition-colors -ml-2">
-                                <ArrowLeft className="w-4 h-4" />
-                                Back
-                            </Button>
-                        </Link>
+                        <BackButton href={`/repo/${owner}/${name}`} label={`Back to ${name}`} />
                         <div className="h-4 w-px bg-slate-200" />
                         <h1 className="text-3xl font-bold tracking-tight text-slate-900">
                             Issues

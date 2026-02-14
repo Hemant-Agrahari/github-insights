@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { SimpleDialog } from "@/components/ui/simple-dialog";
 import { IssueDetailSkeleton } from "@/components/skeletons/IssueDetailSkeleton";
+import { BackButton } from "@/components/ui/back-button";
 
 /**
  * Issue detail page.
@@ -96,12 +97,7 @@ const IssueDetailPage = () => {
 
             {/* Header Actions */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <Link
-                    href={`/repo/${owner}/${name}/issues`}
-                    className="text-blue-600 hover:underline flex items-center gap-1"
-                >
-                    ← Back to Issues
-                </Link>
+                <BackButton href={`/repo/${owner}/${name}/issues`} label="Back to Issues" />
 
                 {issue.state === "open" && (
                     <Button

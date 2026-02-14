@@ -4,10 +4,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Star, GitFork, CircleDot, Users, ArrowLeft, Github, ExternalLink, MessageSquare } from "lucide-react";
+import type { Metadata } from "next";
+import { BackButton } from "@/components/ui/back-button";
 
 type RepoPageProps = {
     params: Promise<{ owner: string; name: string }>;
 };
+
+export async function generateMetadata({ params }: RepoPageProps): Promise<Metadata> {
+    const { owner, name } = await params;
+    return {
+        title: `${owner}/${name} | GitHub Insights`,
+        description: `Overview and stats for ${owner}/${name} repository.`,
+    };
+}
 
 export default async function RepoPage({ params }: RepoPageProps) {
     const { owner, name } = await params;
@@ -28,12 +38,7 @@ export default async function RepoPage({ params }: RepoPageProps) {
                 <div className="max-w-5xl mx-auto space-y-4 md:space-y-8 relative">
                     {/* Navigation */}
                     <div className="flex items-center justify-between pointer-events-auto">
-                        <Link href="/">
-                            <Button variant="ghost" size="sm" className="gap-2 text-slate-500 hover:text-slate-900 transition-colors">
-                                <ArrowLeft className="w-4 h-4" />
-                                Back to Search
-                            </Button>
-                        </Link>
+                        <BackButton href="/" label="Back to Search" />
                         <a
                             href={repo.html_url}
                             target="_blank"
